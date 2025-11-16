@@ -27,28 +27,8 @@ Designed for **macOS (M4 compatible)** — runs on any modern Python 3.9+ system
 ## Requirements
 
 ```bash
-pip install numpy pyaudio PyQt6
+pip install numpy PyQt6 sounddevice
 ```
-
-> On macOS:
-> ```bash
-> brew install portaudio
-> pip install pyaudio
-> ```
-
-> On Linux:
-> ```bash
-> # Ubuntu/Debian
-> sudo apt install portaudio19-dev
->
-> # Fedora
-> sudo dnf install portaudio-devel
->
-> # Arch
-> sudo pacman -S portaudio
->
-> pip install pyaudio
-> ```
 
 ---
 
