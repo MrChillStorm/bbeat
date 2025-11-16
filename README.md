@@ -3,7 +3,7 @@
 ![bbeat UI](screenshot.png)
 *Two dials. Live oscilloscope. Pure sine tones. Nothing else.*
 
-A **minimalist, real-time binaural beat generator** written in **Python** using **PyQt6** and **PyAudio**.
+A **minimalist, real-time binaural beat generator** written in **Python** using **PyQt6** and **sounddevice**.
 Designed for **macOS (M4 compatible)** — runs on any modern Python 3.9+ system.
 
 ---
