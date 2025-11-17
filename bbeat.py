@@ -217,7 +217,22 @@ class BinauralGenerator(QMainWindow):
         self.setWindowTitle("Binaural Beat Generator")
         self.setGeometry(80, 80, 980, 560)
 
-        self.sample_rate = 48000
+        # Autodetect sample rate – works on all current sounddevice versions
+        try:
+            default_output_idx = sd.default.device['output']
+            if default_output_idx is None or default_output_idx < 0:
+                # Find first device with output channels
+                for i, dev in enumerate(sd.query_devices()):
+                    if dev['max_output_channels'] > 0:
+                        default_output_idx = i
+                        break
+                else:
+                    default_output_idx = 0
+            self.sample_rate = sd.query_devices(default_output_idx)['default_samplerate']
+        except Exception:
+            print("Warning: Could not autodetect sample rate → using 48000 Hz")
+            self.sample_rate = 48000.0
+
         self.chunk_size = 1024
         self.carrier_freq = 100.0
         self.beat_freq = 4.0
@@ -231,7 +246,6 @@ class BinauralGenerator(QMainWindow):
         self.ramp_pos = 0
         self.ramp_direction = 1
 
-        # <<< sounddevice replaces pyaudio
         self.stream = None
 
         self.init_ui()
